@@ -31,19 +31,26 @@ async function getPokemons() {
 
     pokeSection.innerHTML = '';
 
+
+
+    //funcion que agrega en el dialog la informacion
     const info = async (id) => {
       try {
+        //hago petiicon
         const data = await fetch(`http://localhost:3000/api/pokemon?id=${id}`);
         if (!data.ok) throw new Error('no salio');
         const dataJson = await data.json();
         const pokemon = dataJson.results[0];
         dialog.id = id;
 
+        // mando la info
         document.getElementById('pokeName').textContent = pokemon.name;
         document.getElementById('pokeImg').src = pokemon.sprite;
         document.getElementById('pokeTypes').textContent = `Tipos: ${pokemon.types.join(', ')}`;
         document.getElementById('altura').textContent = `Altura:  ${pokemon.height}`;
         document.getElementById('peso').textContent = `Peso: ${pokemon.weight}`;
+
+        //mando la info de estadisticas base
         pokemon.stats.map(s => {
           const div = document.createElement('div');
           const progress = document.createElement('progress');
@@ -73,20 +80,23 @@ async function getPokemons() {
       }
     };
 
-
+    //funcion para abrir el dialog con el poke anterior
     function previo(e) {
       const card = e.target.closest('dialog');
-      info(Number(card.id) - 1);
+      if(Number(card.id)>1)info(Number(card.id) - 1);
+      else alert('es el primero')
     }
-
-
+    //funcion para abrir el dialog con el poke siguiente
     function siguiente(e) {
       const card = e.target.closest('dialog');
-      info(Number(card.id) + 1);
+      if (Number(card.id)<totalPokemon)
+          info(Number(card.id) + 1);
+      else 
+          alert('es el ultimo pokemon')
       console.log(card.id);
     }
 
-
+    //agrego los eventos
     document.getElementById('nextPoke').addEventListener('click', (e) => {
       siguiente(e);
     })
