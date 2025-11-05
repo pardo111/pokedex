@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body class="bg-gray-200 min-h-screen flex flex-col items-center justify-center p-6">
+    <h1 class="text-4xl font-bold text-red-600 mb-6 ">Pokedex</h1>
+    <!-- filttros de busqueda -->
+
+    <section class="w-full flex flex-col md:flex-row justify-center items-center gap-4 mb-12 mt-6 ">
+        <input id="name" type="text" placeholder="buscar por nombre"
+            class="w-full border p-2 rounded-lg transition-300 transform focus:border-green-500" />
+        <input type="tel" id="id" placeholder="buscar por id" class="w-full border p-2 rounded-lg" />
+        <select name="tipos" id="type" class="w-full border p-2 rounded-lg">
+            <option value="">todos los tipos</option>
+            <option value="fire">Fuego</option>
+            <option value="water">Agua</option>
+            <option value="grass">Planta</option>
+            <option value="electric">Electrico</option>
+            <option value="psychic">Psíquico</option>
+            <option value="rock">roca</option>
+            <option value="ground">Tierra</option>
+            <option value="bug">Bicho</option>
+            <option value="ghost">fantasma</option>
+            <option value="dragon">dragon</option>
+            <option value="normal">Normal</option>
+            <option value="poison">Veneno</option>
+            <option value="fairy">Hada</option>
+        </select>
+        <button type="button" id="search"
+            class="w-full bg-blue-500 hover:bg-blue-600 hover:scale-102 text-white px-4 py-2 rounded-lg  transition">
+            Buscar
+        </button>
+
+        <button type="button" id="clear"
+            class="w-full bg-green-500 hover:bg-green-600 hover:scale-102 text-white px-4 py-2 rounded-lg  transition">
+            limpiar filtros
+        </button>
+
+
+        <dialog id="pokemonDialog" class="rounded-2xl p-4 shadow-xl  w-80 
+         fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+         min-w-4/5 min-h-4/5 
+  bg-[linear-gradient(to_bottom_right,_#c084fc,_#e9d5ff,_#fbcfe8,_#d8b4fe,_#a855f7)]
+            border-12 border border-purple-700" >
+            <h2 id="pokeName" class="font-black text-3xl capitalize"></h2>
+            <div class="min-w-full max-w-full min-h-40 mx-auto my-4 bg-black rounded flex items-center justify-center
+            border-x border-gray-500 border-6">
+                <img id="pokeImg" class="w-2/6" />
+            </div>
+            <div class="bg-white rounded-xl p-4 gap-4">
+                <p id="pokeTypes" class="capitalize"></p>
+                <p id="peso" class="capitalize"></p>
+                <p id="altura" class="capitalize"></p>
+                <div id="stats" class="flex flex-col gap-4">
+                    <h1 class="text-xl">Estadisticas base</h1>
+
+                </div>
+            </div>
+            <button id="closeDialog" onclick="cerrar()"
+                class="bg-red-500 cursor-pointer text-white px-4 py-2 rounded mt-4 hover:pointer-cursor hover:scale-102 hover:bg-red-400">Cerrar</button>
+
+            <button id="nextPoke"  
+                class="bg-blue-500 text-white px-4 py-2 rounded mt-4 hover:pointer-cursor hover:scale-102 hover:bg-blue-400 cursor-pointer">siguiente</button>
+
+            <button id="prevPoke"  
+                class=" cursor-pointer bg-green-500 text-white px-4 py-2 rounded mt-4 hover:pointer-cursor hover:scale-102 hover:bg-green-400">previo</button>
+        </dialog>
+    </section>
+    <section class="flex gap-8 p-12">
+
+        <button id="first"
+            class="bg-green-500 hover:bg-green-600 hover:scale-101 text-white px-4 py-2 font-bold rounded disable:opacity-50 max-h-fit ">Inicio</button>
+        <button id="prev"
+            class="bg-blue-500 hover:bg-blue-600 hover:scale-101 text-white px-4 py-2 font-bold rounded disable:opacity-50 h-fit">Anterior</button>
+        <button id="next"
+            class="bg-green-500 hover:bg-green-600 hover:scale-101 text-white px-4 py-2 font-bold rounded disable:opacity-50 h-fit">Siguiente</button>
+        <button id="last"
+            class="bg-blue-500 hover:bg-blue-600 hover:scale-101 text-white px-4 py-2 font-bold rounded disable:opacity-50 h-fit">Ultimo</button>
+
+    </section>
+    <section id="poke"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 bg-white gap-6 rounded min-h-screen w-full p-4">
+    </section>
+
+</body>
+<script src="./myjs.js  "></script>
+
+</html>
